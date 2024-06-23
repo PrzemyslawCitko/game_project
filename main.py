@@ -60,3 +60,23 @@ def create_distance_between_capitals(lon1, lat1, lon2, lat2):
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
         dist = c * KM_earth_R
         return dist
+
+
+def create_distances(drawn_capital, coordinates):
+    list_of_distances = []
+    for coordinate in coordinates:    
+        distances = Distance(
+            actual_country=drawn_capital.country,
+            actual_capital=drawn_capital.capital,
+            closest_country=coordinate.country,
+            closest_capital=coordinate.capital,
+            distance=create_distance_between_capitals(
+                drawn_capital.lon, drawn_capital.lat, coordinate.lon, coordinate.lat
+            ),
+        )
+        if distances.distance != 0: 
+            list_of_distances.append(distances)
+    return list_of_distances
+
+def find_closest_capital(distances):
+    return min(distances, key=lambda d: d.distance)
