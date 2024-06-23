@@ -92,6 +92,24 @@ def main():
     closest = find_closest_capital(distances)
     print(closest)
 
+    exclude_countries = []
+
+    while distances:
+        country = input()
+        if country == closest.closest_country:
+            print('OK')
+            exclude_countries.append(country)
+            next_country = next((c for c in coordinates if c.country == closest.closest_country), None)
+            if next_country:
+                print(next_country)
+                distances = create_distances(next_country, coordinates, exclude_countries)
+                print(distances)
+                closest = find_closest_capital(distances)
+                print(closest)
+        else:
+            print('Wrong answer.')
+            break
+
 
 if __name__ == "__main__":
     main()
