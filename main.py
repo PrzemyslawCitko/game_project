@@ -39,4 +39,9 @@ def load_coordinates():
     except FileNotFoundError:
         print('Nie znaleziono pliku.')
         sys.exit(1)
-    return coordinates    
+    return coordinates   
+
+
+def draw_capital(coordinates):
+    drawn_capital = random.choice(coordinates)
+    return drawn_capital
