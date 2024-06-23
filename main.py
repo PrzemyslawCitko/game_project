@@ -62,9 +62,13 @@ def create_distance_between_capitals(lon1, lat1, lon2, lat2):
         return dist
 
 
-def create_distances(drawn_capital, coordinates):
+def create_distances(drawn_capital, coordinates, exclude_countries=None):
+    if exclude_countries is None:
+        exclude_countries = []
     list_of_distances = []
-    for coordinate in coordinates:    
+    for coordinate in coordinates: 
+        if coordinate.country in exclude_countries:
+            continue
         distances = Distance(
             actual_country=drawn_capital.country,
             actual_capital=drawn_capital.capital,
