@@ -45,3 +45,18 @@ def load_coordinates():
 def draw_capital(coordinates):
     drawn_capital = random.choice(coordinates)
     return drawn_capital
+
+
+def create_distance_between_capitals(lon1, lat1, lon2, lat2):
+        lat1 = radians(lat1)
+        lat2 = radians(lat2)
+        lon1 = radians(lon1)
+        lon2 = radians(lon2)
+
+        dist_lat = lat2 - lat1
+        dist_lon = lon2 - lon1
+
+        a = sin(dist_lat / 2)**2 + cos(lat1) * cos(lat2) * sin(dist_lon / 2)**2
+        c = 2 * atan2(sqrt(a), sqrt(1 - a))
+        dist = c * KM_earth_R
+        return dist
