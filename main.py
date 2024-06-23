@@ -108,6 +108,9 @@ def main():
                 print(next_country)
                 distances = create_distances(next_country, coordinates, exclude_countries)
                 print(distances)
+                if not distances:
+                    print('You won!')
+                    break
                 closest = find_closest_capital(distances)
                 print(closest)
                 print(exclude_countries)
