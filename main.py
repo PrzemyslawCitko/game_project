@@ -96,7 +96,7 @@ def main():
     closest = find_closest_capital(distances)
     print(closest)
 
-    exclude_countries = []
+    exclude_countries = [drawn_capital.country]
 
     while distances:
         country = input()
@@ -110,6 +110,7 @@ def main():
                 print(distances)
                 closest = find_closest_capital(distances)
                 print(closest)
+                print(exclude_countries)
         else:
             print('Wrong answer.')
             break
