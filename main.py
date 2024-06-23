@@ -80,3 +80,18 @@ def create_distances(drawn_capital, coordinates):
 
 def find_closest_capital(distances):
     return min(distances, key=lambda d: d.distance)
+
+
+def main():
+    coordinates = load_coordinates()
+    drawn_capital = draw_capital(coordinates)
+    
+    print(drawn_capital)
+    distances = create_distances(drawn_capital, coordinates)
+    print(distances)
+    closest = find_closest_capital(distances)
+    print(closest)
+
+
+if __name__ == "__main__":
+    main()
