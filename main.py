@@ -89,31 +89,25 @@ def find_closest_capital(distances):
 def main():
     coordinates = load_coordinates()
     drawn_capital = draw_capital(coordinates)
-    
     print(drawn_capital)
     distances = create_distances(drawn_capital, coordinates)
-    print(distances)
     closest = find_closest_capital(distances)
-    print(closest)
+
 
     exclude_countries = [drawn_capital.country]
 
     while distances:
         country = input()
-        if country == closest.closest_country:
+        if country == closest.another_country:
             print('OK')
             exclude_countries.append(country)
-            next_country = next((c for c in coordinates if c.country == closest.closest_country), None)
+            next_country = next((c for c in coordinates if c.country == closest.another_country), None)
             if next_country:
-                print(next_country)
                 distances = create_distances(next_country, coordinates, exclude_countries)
-                print(distances)
                 if not distances:
                     print('You won!')
                     break
                 closest = find_closest_capital(distances)
-                print(closest)
-                print(exclude_countries)
         else:
             print('Wrong answer.')
             break
