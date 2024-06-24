@@ -10,6 +10,13 @@ KM_earth_R = 6371
 
 @dataclass
 class Coordinate:
+    """
+    Represents coordinates of the country's capital
+    
+    Atributes:
+        lon (float): Longitude of the capital.
+        lat (float): Latitude of the capital.
+    """
     country: str
     capital: str
     lon: float
@@ -17,6 +24,16 @@ class Coordinate:
 
 @dataclass
 class Distance:
+    """
+    Represents distance betwween two capitals
+    
+    Atributes:
+    actual_country (str): Drawn/chosen country
+    actual_capital (str): Drawn/chosen capital
+    another_country (str): Second country 
+    another_capital (str): Second capital 
+    distance (float): Distance between drawn/chosen capital and second capital in km
+    """
     actual_country: str
     actual_capital: str
     another_country: str
@@ -25,6 +42,11 @@ class Distance:
 
 
 def load_coordinates() -> List[Coordinate]:
+    """
+    Load countries, capitals and coordinates from csv file
+    
+    Returns list of Coordinate objects containing coordinates of the capitals
+    """
     coordinates = []
     try:
         with open(COORDINATES_FILE, encoding='utf-8') as stream:
@@ -44,11 +66,17 @@ def load_coordinates() -> List[Coordinate]:
 
 
 def draw_capital(coordinates: List[Coordinate]) -> Coordinate:
+    """
+    Draw country/capital from Coordinate list
+    """
     drawn_capital = random.choice(coordinates)
     return drawn_capital
 
 
 def create_distance_between_capitals(lon1: float, lat1: float, lon2: float, lat2: float) -> float:
+        """
+        Count distance between two coordiantes in km
+        """
         lat1 = radians(lat1)
         lat2 = radians(lat2)
         lon1 = radians(lon1)
@@ -64,6 +92,9 @@ def create_distance_between_capitals(lon1: float, lat1: float, lon2: float, lat2
 
 
 def create_distances(drawn_capital: Coordinate, coordinates: List[Coordinate], exclude_countries: Optional[List[str]]=None) -> List[Distance]:
+    """
+    Create list of distances between drawn/chosen capital and another capitals
+    """
     if exclude_countries is None:
         exclude_countries = []
     list_of_distances = []
@@ -84,6 +115,9 @@ def create_distances(drawn_capital: Coordinate, coordinates: List[Coordinate], e
     return list_of_distances
 
 def find_closest_capital(distances: List[Distance]) -> Distance:
+    """
+    Finds the closest capital from the distance list
+    """
     return min(distances, key=lambda d: d.distance)
 
 
