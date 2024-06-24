@@ -3,6 +3,7 @@ import sys
 import csv
 import random
 from math import radians, sin, cos, atan2, sqrt
+from typing import List, Optional
 
 COORDINATES_FILE = 'dane1.csv'
 KM_earth_R = 6371
@@ -23,7 +24,7 @@ class Distance:
     distance: float
 
 
-def load_coordinates():
+def load_coordinates() -> List[Coordinate]:
     coordinates = []
     try:
         with open(COORDINATES_FILE, encoding='utf-8') as stream:
@@ -42,12 +43,12 @@ def load_coordinates():
     return coordinates   
 
 
-def draw_capital(coordinates):
+def draw_capital(coordinates: List[Coordinate]) -> Coordinate:
     drawn_capital = random.choice(coordinates)
     return drawn_capital
 
 
-def create_distance_between_capitals(lon1, lat1, lon2, lat2):
+def create_distance_between_capitals(lon1: float, lat1: float, lon2: float, lat2: float) -> float:
         lat1 = radians(lat1)
         lat2 = radians(lat2)
         lon1 = radians(lon1)
@@ -62,7 +63,7 @@ def create_distance_between_capitals(lon1, lat1, lon2, lat2):
         return dist
 
 
-def create_distances(drawn_capital, coordinates, exclude_countries=None):
+def create_distances(drawn_capital: Coordinate, coordinates: List[Coordinate], exclude_countries: Optional[List[str]]=None) -> List[Distance]:
     if exclude_countries is None:
         exclude_countries = []
     list_of_distances = []
@@ -82,7 +83,7 @@ def create_distances(drawn_capital, coordinates, exclude_countries=None):
             list_of_distances.append(distances)
     return list_of_distances
 
-def find_closest_capital(distances):
+def find_closest_capital(distances: List[Distance]) -> Distance:
     return min(distances, key=lambda d: d.distance)
 
 
@@ -92,8 +93,6 @@ def main():
     print(drawn_capital)
     distances = create_distances(drawn_capital, coordinates)
     closest = find_closest_capital(distances)
-
-
     exclude_countries = [drawn_capital.country]
 
     while distances:
