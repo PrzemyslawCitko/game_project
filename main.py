@@ -18,8 +18,8 @@ class Coordinate:
 class Distance:
     actual_country: str
     actual_capital: str
-    closest_country: str
-    closest_capital: str
+    another_country: str
+    another_capital: str
     distance: float
 
 
@@ -72,8 +72,8 @@ def create_distances(drawn_capital, coordinates, exclude_countries=None):
         distances = Distance(
             actual_country=drawn_capital.country,
             actual_capital=drawn_capital.capital,
-            closest_country=coordinate.country,
-            closest_capital=coordinate.capital,
+            another_country=coordinate.country,
+            another_capital=coordinate.capital,
             distance=create_distance_between_capitals(
                 drawn_capital.lon, drawn_capital.lat, coordinate.lon, coordinate.lat
             ),
