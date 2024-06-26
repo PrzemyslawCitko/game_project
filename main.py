@@ -114,6 +114,7 @@ def create_distances(drawn_capital: Coordinate, coordinates: List[Coordinate], e
             list_of_distances.append(distances)
     return list_of_distances
 
+
 def find_closest_capital(distances: List[Distance]) -> Distance:
     """
     Finds the closest capital from the distance list
@@ -134,13 +135,16 @@ def main():
         if country == closest.another_country:
             print('OK')
             exclude_countries.append(country)
+            print(exclude_countries)
             next_country = next((c for c in coordinates if c.country == closest.another_country), None)
             if next_country:
                 distances = create_distances(next_country, coordinates, exclude_countries)
+                print(distances)
                 if not distances:
                     print('You won!')
                     break
                 closest = find_closest_capital(distances)
+                print(closest)
         else:
             print('Wrong answer.')
             break
