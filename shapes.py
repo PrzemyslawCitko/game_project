@@ -9,9 +9,9 @@ SHAPE_FILE = "countries/ne_10m_admin_0_countries.shp"
 
 world = gpd.read_file(SHAPE_FILE)
 
-world.to_file('world.geojson', driver='GeoJSON', encoding='utf-8')
+world.to_file('static/world.geojson', driver='GeoJSON', encoding='utf-8')
 
-with open('world.geojson', 'r', encoding='utf-8') as reader:
+with open('static/world.geojson', 'r', encoding='utf-8') as reader:
     geojson_data = json.load(reader)
 
 m = folium.Map(location=[0, 80], zoom_start=2)
