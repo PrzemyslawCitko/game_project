@@ -122,7 +122,7 @@ def find_closest_capital(distances: List[Distance]) -> Distance:
     return min(distances, key=lambda d: d.distance)
 
 
-def main():
+if __name__ == "__main__":
     coordinates = load_coordinates()
     drawn_capital = draw_capital(coordinates)
     print(drawn_capital)
@@ -148,7 +148,3 @@ def main():
         else:
             print('Wrong answer.')
             break
-
-
-if __name__ == "__main__":
-    main()
