@@ -5,7 +5,7 @@ import random
 from math import radians, sin, cos, atan2, sqrt
 from typing import List, Optional
 
-COORDINATES_FILE = 'dane1.csv'
+COORDINATES_FILE = 'dane.csv'
 KM_earth_R = 6371
 
 @dataclass
