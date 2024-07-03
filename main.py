@@ -2,11 +2,10 @@ from flask import Flask, request, render_template, jsonify
 from waitress import serve
 from calculation import load_coordinates, draw_capital, create_distances, find_closest_capital
 
+
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template('map.html')
+
 
 coordinates = load_coordinates()
 drawn_capital = draw_capital(coordinates)
@@ -16,6 +15,11 @@ closest = find_closest_capital(distances)
 print(closest)
 exclude_countries = [drawn_capital.country]
 game_over = False
+
+
+@app.route('/')
+def index():
+    return render_template('map.html', drawn_capital=drawn_capital.country)
 
 
 @app.route('/clicked', methods=['POST'])
